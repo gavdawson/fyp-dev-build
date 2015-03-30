@@ -320,12 +320,11 @@ if ($result->num_rows > 0) {
     			<a href="?orderby=nameComposite<?php echo $orderby == 'nameComposite' && $sort != 'DESC' ? '&sort=desc' : '';?>">Name</a>
     		</th>
     		<th>
-    			<a href="?orderby=surname<?php echo $orderby == 'surname' && $sort != 'DESC' ? '&sort=desc' : '';?>">Surname</a>
+    			<a href="?orderby=club<?php echo $orderby == 'club' && $sort != 'DESC' ? '&sort=desc' : '';?>">Club</a>
     		</th>
-    		<th>
-    			<a href="?orderby=forenames<?php echo $orderby == 'forenames' && $sort != 'DESC' ? '&sort=desc' : '';?>">Forenames</a>
-    		</th>
-    		
+            <th>
+                <a href="?orderby=lastplayed<?php echo $orderby == 'lastplayed' && $sort != 'DESC' ? '&sort=desc' : '';?>">Last Played</a>
+            </th>
     	</tr>
     <?php
     // output data of each row
@@ -336,9 +335,8 @@ if ($result->num_rows > 0) {
             <td><?php echo $row["playerid"];?></td>
             <td><?php echo $row["membno"];?></td>
         	<td><?php echo $row["nameComposite"];?></td>
-        	<td><?php echo $row["surname"];?></td>
-        	<td><?php echo $row["forenames"];?></td>
-        	
+        	<td><?php echo $row["club"];?></td>        	
+            <td><?php echo $row["lastplayed"];?></td>         
         </tr>
         <?php
     }
