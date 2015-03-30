@@ -1,0 +1,367 @@
+ *		     {
+  margin: 0; 
+  padding: 0
+}
+
+p 		     {
+  font-family: "Arial"; 
+  font-size: 14px; 
+  text-align: left; 
+  padding: 2px; 
+  background-color: #D9FFFF
+}
+
+ body                 {
+  background-color: #D9FFFF; 
+  margin-left: 0px; 
+  margin-top: 0px; 
+  margin-bottom: 20px; 
+  margin-right: 0px;
+  font-family: "Arial"; 
+  font-size: 14px; 
+  padding: 0px; 
+  height: 100.1%
+}
+
+html		     {
+  height: 100.1%; 
+  margin-bottom: 1px; 
+  overflow-y: scroll;
+}
+
+h3                   {
+  font-size: 18px; 
+  font-weight: 700; 
+  background-color: #D9FFFF
+}
+
+a		     {
+  color: #0000FF; 
+  text-decoration: underline
+}
+
+a:link               {
+  color: #0000FF; 
+  text-decoration: underline
+}
+
+a:visited            {
+  color: #880088; 
+  text-decoration: underline
+}
+
+a:hover              {
+  color: #FF0000; 
+  text-decoration: none
+}
+
+a:active             {
+  color: #BB0000
+}
+
+img                  {
+  border: 0px; 
+  padding: 2px
+}
+
+img.tops             {
+  margin-left: 60px; 
+  margin-right: 60px
+}
+
+// div                  {
+  margin: 0 auto; 
+  float: none; 
+  width: 900px; 
+  background-color: #A9EEFA; 
+  border-style: solid; 
+  border: 0px;
+  padding: 10px 5px 5px 5px
+}
+
+.top              {
+  width: 100%; 
+  background-color: #FFFFFF; 
+  text-align: center; 
+  padding: 2px 0px 2px 0px
+}
+
+.topmenu          {
+  width: 100%; 
+  height: 22px; 
+  text-align: center; 
+  background-color: #000055; 
+  padding: 1px 0px 1px 0px;
+  border: 0px; border: 0px
+}
+
+.bottom           {
+  background-color: #000000; 
+  text-align: center; 
+  color: #FFFFFF; 
+  border: 5px; 
+  border-style: solid;
+  border-color: #D9FFFF; 
+  height: 14px; 
+  padding: 5px
+}
+
+table.cal            {
+  border: 0; 
+  border-collapse: collapse; 
+  padding: 1px; 
+  font-size: 10px; 
+  width: 200px;
+  float: left; 
+  background-color: #EEEEBB; 
+  margin: 5px
+}
+
+table.cal th	     {
+  border: 1px solid #FFFFFF
+}
+
+td                   {
+  border: 1px solid #FFFFFF
+}
+
+table.wrds           {
+  border: 2px solid #D9FFFF; 
+  border-collapse: collapse; 
+  padding: 1px; 
+  width: 474px;
+  background-color: #D9FFFF; 
+  float: right; 
+  margin: 0px
+}
+
+table.words, table.words td, table.words tr {
+  border: 0
+}
+
+table.yl             {
+  border-collapse: collapse; 
+  width: 700px
+}
+
+table.yl td, table.yl tr {
+  border: 1px solid black
+}
+
+table.yl th          {
+  border: 2px solid black
+}
+
+tr.wrd               {
+  font-family: "Verdana", Serif; font-size: 10px; 
+  border: 0px
+}
+
+td.wr                {
+  font-family: "Verdana", Serif; font-size: 10px; 
+  border: 0px
+}
+
+.norm               {
+  font-family: "Arial"; 
+  color: #FFFFFF; 
+  padding: 1px; 
+  background-color: #000000; 
+  margin: 0px;
+  text-align: center
+}
+
+.second             {
+  float: right; 
+  width: 686px; 
+  margin-left: 0px; 
+  margin-top: 5px; 
+  margin-bottom: 5px;
+  margin-right: 0px
+}
+
+.third              {
+  float: left; 
+  width: 417px; 
+  margin-left: 0px; 
+  margin-top: 0px; 
+  margin-bottom: 10px;
+  margin-right: 0px; 
+  font-size: 12px
+}
+
+.words              {
+  font-family: "Verdana", Serif; 
+  width: 470px; 
+  float: right; 
+  margin-left: 0px; 
+  margin-top: 0px; 
+  margin-bottom: 0px;
+  margin-right: 0px; 
+  font-size: 10px
+}
+
+.leftb		     {
+  font-family: "Arial"; 
+  font-size: 10px; 
+  float: left; 
+  width: 100px; 
+  padding: 1px; 
+  background-color: #000000; 
+  margin: 0px
+}
+
+.rightb             {
+  font-family: "Arial"; 
+  font-size: 10px; 
+  float: right; 
+  text-align: right; 
+  width: 100px; 
+  padding: 1px; 
+  background-color: #000000;
+  margin: 0px
+}
+
+a.blink 	     {
+  color: #FFFFFF; 
+  font-size: 10px; 
+  font-weight: 700; 
+  text-decoration: none
+}
+
+a.blink:link         {
+  color: #FFFFFF; 
+  font-size: 10px; 
+  font-weight: 700; 
+  text-decoration: none
+}
+
+a.blink:visited      {
+  color: #FFFFFF; 
+  font-size: 10px; 
+  font-weight: 700; 
+  text-decoration: none
+}
+
+a.blink:hover        {
+  color: #FFFFFF; 
+  font-size: 10px; 
+  font-weight: 700; 
+  text-decoration: underline
+}
+
+a.blink:active       {
+  color: #FFAAAA; 
+  font-size: 10px; 
+  font-weight: 700; 
+  text-decoration: underline
+}
+
+.smaller            {
+  font-size: 10px; 
+  width: 420px; 
+  float: left; 
+  margin: 0px
+}
+
+form                 {
+  float: left; 
+  font-size: 10px; 
+  background-color: #D9FFFF; 
+  margin: 0px
+}
+
+.alternatively      {
+  float: left; 
+  font-size: 10px; 
+  width: 420px; 
+  background-color: #D9FFFF; 
+  margin: 0px
+}
+
+hr                   {
+  margin: 5px; 
+  border: 0; 
+  color: #000000; 
+  background-color: #000000; 
+  height: 2px
+}
+
+.legalguff          {
+  font-size: 8px; 
+  width: 900px; 
+  background-color: #A9EEFA
+}
+
+#nav                 {
+  float: left; 
+  width: 100%;	
+  background-color: #000000; 
+  text-align: center; 
+  padding: 1px 0px 1px 0px;
+  color: #FFFFFF; 
+  border: 0; 
+  height: 20px
+}
+
+#nav ul		     {
+  width: 897px; 
+  margin: 0 auto; 
+  list-style: none; 
+  font-weight: 700; 
+  font-size: 16px
+}
+
+#nav li		     {
+  float: left; 
+  position: relative; 
+  display: block; 
+  width: 128px; 
+  color: #FFFFFF; 
+  background-color: #000000
+}
+#nav li:hover         {
+  background-color: #888888
+} 
+
+#nav a               {
+  display: block; 
+  width: 128px; 
+  color: #FFFFFF; 
+  background-color: #000000; 
+  text-decoration: none
+}
+
+#nav a:hover         {
+  background-color: #888888
+}
+
+#nav li ul           {
+  display: block; 
+  position: absolute; 
+  width: 118px; 
+  left: -999em; 
+  font-weight: 400; 
+  font-size: 16px
+}
+
+#nav li:hover ul     {
+  top: 18px; 
+  left: 0
+}
+
+#nav li li           {
+  display: block
+}
+
+#nav li ul ul        {
+  /* third-and-above-level lists */margin: -19px 0 0 127px
+}
+
+#nav li:hover ul ul, #nav li:hover ul ul ul, #nav li.sfhover ul ul, #nav li.sfhover ul ul ul {
+  left: -999em
+}
+#nav li:hover ul, #nav li li:hover ul, #nav li li li:hover ul, #nav li.sfhover ul, #nav li li.sfhover ul, #nav li li li.sfhover ul        {
+  left: auto;
+}
+

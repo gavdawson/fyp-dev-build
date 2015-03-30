@@ -1,0 +1,52 @@
+.gav {
+  padding-top: 40px;
+  padding-bottom: 20px;
+  margin-left:10%;
+  margin-right:10%;
+  width: 80%;
+}
+
+.gav-table {
+	margin-left:10%;
+	margin-right:10%;
+	width: 80%;
+	background-color: #eee;
+	border: solid 1px #000 !important;
+	border-collapse: collapse;
+}
+
+.gav-table th {
+	background-color: #ddd;
+	text-align: left;
+	border-bottom: solid 1px #000 !important;
+	padding: 6px;
+	border-collapse: collapse;
+}
+
+.gav-table th a {
+	font-size: 110%;
+	font-weight: bold;
+	color: #555;
+}
+
+.gav-table th a:hover {
+	text-decoration: underline;
+	color: #000;
+}
+
+.gav-table th a:active {
+	text-decoration: underline;
+	color: #000;
+}
+
+.gav-table td, .gav-table tr {
+	text-align: left;
+	border: none!important;
+	padding: 6px;
+	border-collapse: collapse;
+}
+
+.gav-table > tbody > tr:nth-of-type(odd) {
+  background-color: #fff;
+  border: none !important;
+}

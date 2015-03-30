@@ -8,19 +8,16 @@
 <head>
 
 
-<meta http-equiv="Pragma" content="no-cache">
-<meta http-equiv="Expires" content="-1">
-<meta http-equiv="cache-control" content="no-cache">
+
 
 <title>ABSP - Ratings in Ranking Order</title>
 
-<link rel="stylesheet" type="text/css" href="/norm.css" />
+<!-- <link rel="stylesheet" type="text/css" href="/fyp-dev-build/css/bootstrap.css" /> -->
 
-<link rel="stylesheet" type="text/css" href="/sidebar.css" />
+<link rel="stylesheet" type="text/css" href="/fyp-dev-build/css/norm.css" />
 
-<style type="text/css">
-table, tr, td {border: 0}
-</style>
+<link rel="stylesheet" type="text/css" href="/fyp-dev-build/css/style.css" />
+
 
 </head>
 
@@ -31,7 +28,7 @@ table, tr, td {border: 0}
 <div class="top">
  
  
-<img class="tops" src="/absp_logo.PNG" width="204" height="80" alt="Association of British Scrabble Players" />
+<img class="tops" src="/fyp-dev-build/images/absp_logo.PNG" width="204" height="80" alt="Association of British Scrabble Players" />
  
  
 </div>
@@ -252,10 +249,14 @@ table, tr, td {border: 0}
  </ul>
 </div> 
 
+<div class="gav"> 
+    <p>Current ABSP Ratings list (Fully Rated Players at least 30 games).
+</div>
+
 <?php
 $servername 	= "localhost";
 $username 		= "root";
-$password 		= "";
+$password 		= "mysql";
 $dbname 		= "absporgu_membership";
 $orderby 		= '';
 $sort 			= '';
@@ -304,7 +305,7 @@ $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
 	?>
-    <table class="table-style">
+    <table class="gav-table">
     	<tr>
             <th>
                 <a href="?orderby=membno<?php echo $orderby == 'membno' && $sort != 'DESC' ? '&sort=desc' : '';?>">Rank</a>
@@ -343,6 +344,7 @@ if ($result->num_rows > 0) {
     }
     ?>
     </table>
+
     <?php
 } else {
 	?>
@@ -351,5 +353,7 @@ if ($result->num_rows > 0) {
 }
 $conn->close();
 ?>
+
+
 
 </body>
