@@ -7,9 +7,6 @@
 
 <head>
 
-
-
-
 <title>ABSP - Ratings in Ranking Order</title>
 
 <!-- <link rel="stylesheet" type="text/css" href="/fyp-dev-build/css/bootstrap.css" /> -->
@@ -18,21 +15,23 @@
 
 <link rel="stylesheet" type="text/css" href="/fyp-dev-build/css/style.css" />
 
+<link rel="stylesheet" type="text/css" href="/fyp-dev-build/css/jquery.dataTables.css" />
 
+<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script src="/fyp-dev-build/js/jquery.js"></script>
+<script src="/fyp-dev-build/js/table-sorter.js"></script>
+<script src="/fyp-dev-build/js/jquery.dataTables.min.js"></script>
 </head>
 
 
 <body>
 
-
-<div class="top">
- 
+<div class="top"> 
  
 <img class="tops" src="/fyp-dev-build/images/absp_logo.PNG" width="204" height="80" alt="Association of British Scrabble Players" />
  
- 
 </div>
- 
  
 <div id="nav"> 
  <ul>
@@ -249,10 +248,11 @@
  </ul>
 </div> 
 
-<div class="gav"> 
-    <p>Current ABSP Ratings list (Fully Rated Players at least 30 games).
-</div>
+    <div class="description"> 
+        <p>Current ABSP Ratings list (Fully Rated Players at least 30 games).
+    </div>
 
+    <div class="gav">
 <?php
 $servername 	= "localhost";
 $username 		= "root";
@@ -305,31 +305,36 @@ $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
 	?>
-    <table class="gav-table">
-    	<tr>
+    <table id="example" class="new-table row-border hover order-column" cellspacing="0" width="100%">        
+        <thead>
+            <tr>
+                
             <th>
-                <a href="?orderby=membno<?php echo $orderby == 'membno' && $sort != 'DESC' ? '&sort=desc' : '';?>">Rank</a>
+                Rank
             </th>
             <th>
-                <a href="?orderby=membno<?php echo $orderby == 'membno' && $sort != 'DESC' ? '&sort=desc' : '';?>">Rating</a>
+                Rating
             </th>
     		<th>
-    			<a href="?orderby=membno<?php echo $orderby == 'membno' && $sort != 'DESC' ? '&sort=desc' : '';?>">Member Number</a>
+    			Member Number
     		</th>
     		<th>
-    			<a href="?orderby=nameComposite<?php echo $orderby == 'nameComposite' && $sort != 'DESC' ? '&sort=desc' : '';?>">Name</a>
+    			Name
     		</th>
     		<th>
-    			<a href="?orderby=club<?php echo $orderby == 'club' && $sort != 'DESC' ? '&sort=desc' : '';?>">Club</a>
+    			Club
     		</th>
             <th>
-                <a href="?orderby=lastplayed<?php echo $orderby == 'lastplayed' && $sort != 'DESC' ? '&sort=desc' : '';?>">Last Played</a>
+                Last Played
             </th>
-    	</tr>
+        </tr>
+    	</head>
+        <tbody  id="fbody">
     <?php
     // output data of each row
     while($row = $result->fetch_assoc()) {
     	?>
+        
         <tr>
         	<td><?php echo $row["playerid"];?></td>
             <td><?php echo $row["playerid"];?></td>
@@ -338,11 +343,13 @@ if ($result->num_rows > 0) {
         	<td><?php echo $row["club"];?></td>        	
             <td><?php echo $row["lastplayed"];?></td>         
         </tr>
+    
         <?php
     }
     ?>
-    </table>
-
+    </tbody>
+</table>
+</div>
     <?php
 } else {
 	?>
@@ -351,7 +358,5 @@ if ($result->num_rows > 0) {
 }
 $conn->close();
 ?>
-
-
 
 </body>
