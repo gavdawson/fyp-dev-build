@@ -1,9 +1,54 @@
+.player-information-table {
+  border: solid 2px #000!important;
+  border-collapse: collapse;
+  padding: 5px;
+  margin: 5px;
+}
+
+.player-information-table thead tr th {
+  border: solid 2px #000!important;
+  padding: 5px;
+  background-color: #ddd;
+}
+
+.player-information-table thead tr th h3 {
+  background-color: #ddd;
+}
+
+.player-information-table tbody tr td {
+  border: solid 2px #000!important;
+  padding: 5px;
+  background-color: #fff;
+}
+
+.player-information-table tbody tr td p, .player-information-table tbody tr td h3, .player-information-table tbody tr td h4 {
+  background-color: #fff;
+  text-align: center;
+}
+
+.player-image {
+  padding: 10px;
+  max-height: 300px;
+  max-width: 300px;
+  height: 180px;
+}
+
+.player-description {
+  padding: 5px;
+  background-color: #eee;
+}
+
+.gav p {
+  padding: 5px;
+}
+
 .gav {
 	background-color: #eee;
 	margin-left:10%!important;
 	margin-right:10%!important;
 	width: 80%!important;
 	border: solid 2px #000;
+  clear: both;
 }
 
 .description {
