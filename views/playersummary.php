@@ -24,6 +24,15 @@
 <script src="/fyp-dev-build/js/jquery.dataTables.min.js"></script>
 </head>
 
+<?php
+$playerid = htmlspecialchars($_GET["playerid"]);
+$playername = htmlspecialchars($_GET["playername"]);
+$location = htmlspecialchars($_GET["location"]);
+$wins = htmlspecialchars($_GET["wins"]);
+$losses = htmlspecialchars($_GET["losses"]);
+$draws = htmlspecialchars($_GET["draws"]);
+$winperc = htmlspecialchars($_GET["winperc"]);
+?>
 
 <body>
 
@@ -246,11 +255,13 @@
 </ul>
 </li> 
  </ul>
-</div> 
+</div>
 
-    <div class="description"> 
-        <p>Player summary.
-    </div>
+<p style="clear: both;"></p>
+
+<div class="gav" style="clear: both; border-bottom: none;">
+    <h2>Players summary.</h2>
+</div>
 
     <div class="gav">
 <?php
@@ -272,7 +283,7 @@ if ($conn->connect_error) {
 // $sql = "SELECT * FROM playero";
 
 // SQL for all playero info plus the count of tournaments and possibily the total points (TRP to be confirmed if this is points)
-$sql = "SELECT * FROM playero, (SELECT DISTINCT playerid, count(tournid) AS tourncount, TRP AS trptotal FROM `rpointso` GROUP BY playerid) tmp WHERE playero.playerid = tmp.playerid";
+$sql = "SELECT *, sum(numwins) as wins, sum(numlosses) as losses, sum(numdraws) as draws, count(tournid) as tourneys FROM tournmtSummary join playerO on tournmtSummary.playerid=playerO.playerid group by tournmtSummary.playerid ORDER BY `tourneys` DESC";
 
 // SQL for total matches played (not joined or as variable):
 // "SELECT DISTINCT playerid, sum(counttournid) as sumcounttourndid FROM (SELECT * FROM (SELECT DISTINCT playerid, count(tournid) as counttournid FROM `ratedmatches` GROUP BY playerid) t1 UNION SELECT * FROM (SELECT DISTINCT oppoid, count(tournid) as counttournid FROM `ratedmatches` GROUP BY oppoid) t2) t3 GROUP BY playerid"
@@ -343,21 +354,34 @@ if ($result->num_rows > 0) {
     	</head>
         <tbody  id="fbody">
     <?php
+
     // output data of each row
     while($row = $result->fetch_assoc()) {
-    	?>
-        
+    	
+        $gametotal = $row["wins"] + $row["losses"] + $row["draws" ];
+        $winperans = $row["wins"] / $gametotal * 100;
+        ?>
         <tr>
-        	<td><?php echo $row["nameComposite"];?></td>
-            <td><?php echo $row["playerid"];?></td>
-            <td><?php echo $row["playerid"];?></td>
-        	<td><?php echo $row["playerid"];?></td>
-        	<td><?php echo $row["playerid"];?></td>        	
-            <td><?php echo $row["playerid"];?></td>
-            <td><?php echo $row["playerid"];?></td>
-            <td><?php echo $row["playerid"];?></td> 
-            <td><?php echo $row["playerid"];?></td> 
-            <td><?php echo $row["playerid"];?></td>                   
+        	<td><a href="/fyp-dev-build/views/singleplayersummary.php?playerid=<?php echo $row["playerid"] . '&playername=' . $row["forenames"] . ' ' .  $row["surname"]. '&location=' . $row["club"] . '&wins=' . $row["wins"] . '&losses=' . $row["losses"] . '&draws=' . $row["draws"] . '&winperc=' . round($winperans, 2) . '%' ;?>"><?php echo $row["forenames"];?> <?php echo $row["surname"];?></td></a>
+            <td><?php 
+                
+                echo $gametotal;
+                ?>
+            </td>
+            <td><?php echo $row["wins"];?></td>
+        	<td><?php echo $row["losses"];?></td>
+        	<td><?php echo $row["draws"];?></td>        	
+            <td>
+                <?php 
+                //$winpersum = $row["wins"] + $row["losses"] + $row["draws" ];
+                
+                echo round($winperans, 2) . '%';
+                ?>
+            </td>
+            <td><?php echo $row["tourneys"];?></td>
+            <td><?php echo $row["0"];?></td> 
+            <td><?php echo $row["0"];?></td> 
+            <td><?php echo $row["0"];?></td>                   
         </tr>
     
         <?php

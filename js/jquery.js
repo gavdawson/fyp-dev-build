@@ -106,3 +106,10 @@ $("#searchInput").keyup(function () {
 $(document).ready(function() {
     $('#example').DataTable();
 } );
+
+if ($("#rowna").html()) {
+    // The cell has stuff in it
+}
+else {
+    $('#rowna').css('background-color','#000!important');
+}

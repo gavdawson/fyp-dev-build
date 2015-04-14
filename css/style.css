@@ -38,8 +38,9 @@
   background-color: #eee;
 }
 
-.gav p {
+.gav p, .gav h2, .gav h3 {
   padding: 5px;
+  background-color: #eee;
 }
 
 .gav {
@@ -648,4 +649,7 @@ table.dataTable td {
 
 td.highlight {
     background-color: #f00!important;
+}
+
+
 }

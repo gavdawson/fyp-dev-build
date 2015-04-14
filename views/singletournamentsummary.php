@@ -23,8 +23,10 @@
 <script src="/fyp-dev-build/js/table-sorter.js"></script>
 <script src="/fyp-dev-build/js/jquery.dataTables.min.js"></script>
 </head>
-
-<?php
+<?php 
+$tournid = htmlspecialchars($_GET["tournid"]);
+$tourntitle = htmlspecialchars($_GET["tourntitle"]);
+$tourndate = htmlspecialchars($_GET["tourndate"]);
 $playerid = htmlspecialchars($_GET["playerid"]);
 $playername = htmlspecialchars($_GET["playername"]);
 $location = htmlspecialchars($_GET["location"]);
@@ -32,15 +34,14 @@ $wins = htmlspecialchars($_GET["wins"]);
 $losses = htmlspecialchars($_GET["losses"]);
 $draws = htmlspecialchars($_GET["draws"]);
 $winperc = htmlspecialchars($_GET["winperc"]);
-
 ?>
 
 <body>
 
 <div class="top"> 
-<?php ?>
+ 
 <img class="tops" src="/fyp-dev-build/images/absp_logo.PNG" width="204" height="80" alt="Association of British Scrabble Players" />
-<?php ?> 
+ 
 </div>
  
 <div id="nav"> 
@@ -258,7 +259,22 @@ $winperc = htmlspecialchars($_GET["winperc"]);
  </ul>
 </div> 
 
-   
+<p style="clear: both;"></p>
+
+<div class="gav" style="float: left;">
+    <h2><?php echo $tourntitle;?></h2>
+    <h2><?php echo $tourndate;?></h2>
+    <h3>(NUMBER OF DIVISIONS) | (INSERT NUMBER OF PLAYERS) | (INSERT NUMBER OF GAMES)</h3>
+</div>
+
+<p style="clear: both;"></p>
+
+<div class="gav" style="clear: both; border-bottom: none;">
+    <h2>(DIVISION NAME (CHANGE ON FILTER))</h2>
+</div>
+
+<div class="gav">
+
 <?php
 $servername 	= "localhost";
 $username 		= "root";
@@ -277,10 +293,9 @@ if ($conn->connect_error) {
 // Initial SQL Query
 // $sql = "SELECT * FROM playero";
 
-
 // SQL for all playero info plus the count of tournaments and possibily the total points (TRP to be confirmed if this is points)
-//$sql = "SELECT * FROM playero, (SELECT DISTINCT playerid, count(tournid) AS tourncount, TRP AS trptotal FROM `rpointso` GROUP BY playerid) tmp WHERE playero.playerid = tmp.playerid";
-$sql = "SELECT *, coalesce(numwins, 'N/A') as wins, coalesce(numlosses, 'N/A') as losses, coalesce(numdraws, 'N/A') as draws, coalesce(numbyes, 'N/A') as byes, DATE_FORMAT(rpointsO.tourndate,'%d/%m/%y') AS dateformatted FROM tournmtSummary RIGHT JOIN rpointsO on tournmtSummary.tournid=rpointsO.tournid and tournmtSummary.playerid=rpointsO.playerid left JOIN tournmtO on tournmtSummary.tournid=tournmtO.tournid where rpointsO.playerid='$playerid' ORDER BY tourntitle DESC";
+//$sql = "SELECT * FROM playero,  (SELECT DISTINCT playerid, count(tournid) AS tourncount, TRP AS trptotal FROM `rpointso` GROUP BY playerid) tmp WHERE playero.playerid = tmp.playerid";
+$sql = "SELECT *, sum(numwins) as wins, sum(numlosses) as losses, sum(numdraws) as draws, count(tournid) as tourneys FROM tournmtSummary join playerO on tournmtSummary.playerid=playerO.playerid WHERE tournid='$tournid' group by tournmtSummary.playerid ORDER BY `tourneys` DESC";
 // SQL for total matches played (not joined or as variable):
 // "SELECT DISTINCT playerid, sum(counttournid) as sumcounttourndid FROM (SELECT * FROM (SELECT DISTINCT playerid, count(tournid) as counttournid FROM `ratedmatches` GROUP BY playerid) t1 UNION SELECT * FROM (SELECT DISTINCT oppoid, count(tournid) as counttournid FROM `ratedmatches` GROUP BY oppoid) t2) t3 GROUP BY playerid"
 
@@ -310,76 +325,6 @@ if( isset( $_GET['orderby'] ) ) {
 
 $result = $conn->query($sql);
 
-?>
-
-<p style="clear: both;"></p>
- 
-<div class="gav" style="float: left;">
-<?php 
-$filename = $playerid . 'PNG'; 
-echo '<img class="player-image" style="float: left;" src="/fyp-dev-build/images/profile-pics/';
-echo $playerid;
-echo '.PNG" ';
-echo 'onerror="this.src=';
-echo "'/fyp-dev-build/images/player-image.PNG'";
-echo '"';
-echo '>';
-
-?>
-
-
-<h2 class="player-description"><?php echo $playername; ?> | <?php echo $location; ?></h2>
-
-<table class="player-information-table">
-    <thead>
-        <tr>
-            <th>
-                <h3>Rating</h3>
-            </th>
-            <th>
-                <h3>Ranking</h3>
-            </th>
-            <th>
-                <h3>Lifetime record</h3>
-            </th>
-            <th>
-                <h3>Avg. score</h3>
-            </th>
-        </tr>
-        
-    </thead>
-    <tbody>
-        <tr>
-            <td>
-                <h4>(SELECTED PLAYER RATING)</h4>
-                <p>(SELECTED PLAYER PEAK RATING)</p>
-            </td>
-            <td>
-                <h4>(SELECTED PLAYER RANK)</h4>
-            </td>
-            <td>
-                <h4><?php echo $wins . ', ' . $losses . ', ' . $draws ?><h4>
-                <h4><?php echo '(' . $winperc . ')';?></h4>
-            </td>
-            <td>
-                <h4>(AVERAGE SCORE WIN - AVERAGE SCORE LOSS)</h4>
-            </td>
-        </tr>
-    </tbody>
-</table>
-
-</div>
-
-<p style="clear: both;"></p>
-
-<div class="gav" style="clear: both; border-bottom: none;">
-    <h2>Career Tournaments</h2>
-</div>
-
-<div class="gav">
-
-<?php
-
 if ($result->num_rows > 0) {
 	?>
     <table id="example" class="new-table row-border hover order-column" cellspacing="0" width="100%">        
@@ -387,31 +332,28 @@ if ($result->num_rows > 0) {
             <tr>
                 
             <th>
-                Tournament
+                Place
             </th>
             <th>
-                Date
+                Seed
             </th>
+    		<th>
+    			Name
+    		</th>
     		<th>
     			W
     		</th>
     		<th>
     			L
     		</th>
-    		<th>
-    			D
-    		</th>
+            <th>
+                D
+            </th>
             <th>
                 B
             </th>
             <th>
                 Spread
-            </th>
-            <th>
-                Place
-            </th>
-            <th>
-                Seed
             </th>
             <th>
                 Old Rating
@@ -428,23 +370,22 @@ if ($result->num_rows > 0) {
     <?php
     // output data of each row
     while($row = $result->fetch_assoc()) {
+        $gametotal = $row["wins"] + $row["losses"] + $row["draws" ];
+        $winperans = $row["wins"] / $gametotal * 100;
     	?>
         
         <tr>
-        	<td>
-                <a href="/fyp-dev-build/views/singletournamentsummary.php?tournid=<?php echo $row["tournid"] . '&';
-                echo 'tourntitle=' . $row["tourntitle"] . '&tourndate=' . $row["dateformatted"] . '&tournid=' . $row["tournid"];?>"><?php echo $row["tourntitle"];?></a></td>
-            <td><?php echo $row["dateformatted"];?></td>
-            <td><?php echo $row["numwins"];?></td>
-            <td><?php echo $row["numlosses"];?></td>            
+        	<td><?php echo $row["0"];?></td>
+            <td><?php echo $row["0"];?></td>
+            <td><a href="/fyp-dev-build/views/singleplayersummary.php?playerid=<?php echo $row["playerid"] . '&playername=' . $row["forenames"] . ' ' .  $row["surname"]. '&location=' . $row["club"] . '&wins=' . $row["wins"] . '&losses=' . $row["losses"] . '&draws=' . $row["draws"] . '&winperc=' . round($winperans, 2) . '%' ;?>"><?php echo $row["forenames"];?> <?php echo $row["surname"];?></td></a>
+        	<td><?php echo $row["numwins"];?></td>
+        	<td><?php echo $row["numlosses"];?></td>        	
             <td><?php echo $row["numdraws"];?></td>
             <td><?php echo $row["numbyes"];?></td>
+            <td><?php echo $row["0"];?></td> 
+            <td><?php echo $row["0"];?></td> 
             <td><?php echo $row["0"];?></td>
-            <td><?php echo $row["0"];?></td>
-            <td><?php echo $row["0"];?></td>
-            <td><?php echo $row["0"];?></td>
-            <td><?php echo $row["0"];?></td>
-            <td><?php echo $row["0"];?></td>
+            <td><?php echo $row["0"];?></td>                    
         </tr>
     
         <?php
