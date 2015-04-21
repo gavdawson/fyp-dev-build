@@ -280,7 +280,7 @@ if ($conn->connect_error) {
 
 // SQL for all playero info plus the count of tournaments and possibily the total points (TRP to be confirmed if this is points)
 //$sql = "SELECT * FROM playero, (SELECT DISTINCT playerid, count(tournid) AS tourncount, TRP AS trptotal FROM `rpointso` GROUP BY playerid) tmp WHERE playero.playerid = tmp.playerid";
-$sql = "SELECT *, coalesce(numwins, 'N/A') as wins, coalesce(numlosses, 'N/A') as losses, coalesce(numdraws, 'N/A') as draws, coalesce(numbyes, 'N/A') as byes, DATE_FORMAT(rpointsO.tourndate,'%d/%m/%y') AS dateformatted FROM tournmtSummary RIGHT JOIN rpointsO on tournmtSummary.tournid=rpointsO.tournid and tournmtSummary.playerid=rpointsO.playerid left JOIN tournmtO on tournmtSummary.tournid=tournmtO.tournid where rpointsO.playerid='$playerid' ORDER BY tourntitle DESC";
+$sql = "SELECT *, DATE_FORMAT(rpointsO.tourndate,'%d/%m/%y') AS dateformatted FROM tournmtSummary RIGHT JOIN rpointsO on tournmtSummary.tournid=rpointsO.tournid and tournmtSummary.playerid=rpointsO.playerid left JOIN tournmtO on tournmtSummary.tournid=tournmtO.tournid where rpointsO.playerid='$playerid' ORDER BY tourntitle DESC";
 // SQL for total matches played (not joined or as variable):
 // "SELECT DISTINCT playerid, sum(counttournid) as sumcounttourndid FROM (SELECT * FROM (SELECT DISTINCT playerid, count(tournid) as counttournid FROM `ratedmatches` GROUP BY playerid) t1 UNION SELECT * FROM (SELECT DISTINCT oppoid, count(tournid) as counttournid FROM `ratedmatches` GROUP BY oppoid) t2) t3 GROUP BY playerid"
 

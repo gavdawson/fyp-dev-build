@@ -295,7 +295,7 @@ if ($conn->connect_error) {
 
 // SQL for all playero info plus the count of tournaments and possibily the total points (TRP to be confirmed if this is points)
 //$sql = "SELECT * FROM playero,  (SELECT DISTINCT playerid, count(tournid) AS tourncount, TRP AS trptotal FROM `rpointso` GROUP BY playerid) tmp WHERE playero.playerid = tmp.playerid";
-$sql = "SELECT *, sum(numwins) as wins, sum(numlosses) as losses, sum(numdraws) as draws, count(tournid) as tourneys FROM tournmtSummary join playerO on tournmtSummary.playerid=playerO.playerid WHERE tournid='$tournid' group by tournmtSummary.playerid ORDER BY `tourneys` DESC";
+$sql = "SELECT *, sum(numwins) as wins, sum(numlosses) as losses, sum(numdraws) as draws, count(tournid) as tourneys FROM tournmtSummary join playerO on tournmtSummary.playerid=playerO.playerid group by tournmtSummary.playerid ORDER BY `tourneys` DESC";
 // SQL for total matches played (not joined or as variable):
 // "SELECT DISTINCT playerid, sum(counttournid) as sumcounttourndid FROM (SELECT * FROM (SELECT DISTINCT playerid, count(tournid) as counttournid FROM `ratedmatches` GROUP BY playerid) t1 UNION SELECT * FROM (SELECT DISTINCT oppoid, count(tournid) as counttournid FROM `ratedmatches` GROUP BY oppoid) t2) t3 GROUP BY playerid"
 
