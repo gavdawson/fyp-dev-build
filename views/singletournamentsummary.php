@@ -9,20 +9,17 @@
 
 <title>ABSP - Ratings in Ranking Order</title>
 
-<!-- <link rel="stylesheet" type="text/css" href="/fyp-dev-build/css/bootstrap.css" /> -->
-
 <link rel="stylesheet" type="text/css" href="/fyp-dev-build/css/norm.css" />
-
 <link rel="stylesheet" type="text/css" href="/fyp-dev-build/css/style.css" />
-
-<link rel="stylesheet" type="text/css" href="/fyp-dev-build/css/jquery.dataTables.css" />
 
 <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
 <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <script src="/fyp-dev-build/js/jquery.js"></script>
 <script src="/fyp-dev-build/js/table-sorter.js"></script>
 <script src="/fyp-dev-build/js/jquery.dataTables.min.js"></script>
+
 </head>
+
 <?php 
 $tournid = htmlspecialchars($_GET["tournid"]);
 $tourntitle = htmlspecialchars($_GET["tourntitle"]);

@@ -1,8 +1,8 @@
 <?php
 
 $dbhost="localhost";
-$dbuser="root";
-$dbpass="";
+$dbuser="USER_REMOVED";
+$dbpass="PASS_REMOVED";
 $db="absporgu_membership";
 $dbnull=null;
 
