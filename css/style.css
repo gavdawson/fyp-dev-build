@@ -1,3 +1,5 @@
+// Prototype styles
+
 .player-information-table {
   border: solid 2px #000!important;
   border-collapse: collapse;
@@ -61,16 +63,9 @@
 	padding-top: 30px;
 }
 
-#example_wrapper {
-	//margin-left:10%!important;
-	//margin-right:10%!important;
-	//width: 80%!important;
-}
-
 .new-table {
 	background-color: #eee;
 	border-collapse: collapse;
-	//border: solid 2px #000;
 }
 
 .dataTables_length select {
@@ -98,7 +93,12 @@
 
 }
 
-// TABLE CSS
+// Code that styles tables.
+// Original code has been modified to create the design of the prototype.
+// Original code downloaded from: https://www.datatables.net/
+
+// DataTables 1.10.5
+// Â©2008-2015 SpryMedia Ltd - datatables.net/license
 
 #example td {
   background-color: #fff!important;
@@ -154,21 +154,14 @@
   text-align: left;
 }
 
-/*
- * Table styles
- */
+// Table styles
+
 table.dataTable {
   width: 100%;
   margin: 0 auto;
   clear: both;
   border-collapse: collapse;
   border-spacing: 0;
-  /*
-   * Header and footer styles
-   */
-  /*
-   * Body styles
-   */
 }
 table.dataTable thead th,
 table.dataTable tfoot th {
@@ -465,9 +458,8 @@ table.dataTable td {
   box-sizing: content-box;
 }
 
-/*
- * Control feature layout
- */
+// Control feature layout
+
 .dataTables_wrapper {
   position: relative;
   clear: both;
